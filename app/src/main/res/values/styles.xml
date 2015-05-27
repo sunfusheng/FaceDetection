@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="App.Theme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@color/bk</item>
+    </style>
+
+</resources>
