@@ -9,7 +9,8 @@ Face++是北京旷视科技有限公司旗下的新型视觉服务平台，Face+
 * 人脸追踪
 
 ##下面是手机截图：
-![Main screen](/screenshots/main_page.png) ![Menu](/screenshots/menu_page.png)
+![Main screen](/screenshots/main_page.png) 
+![Menu](/screenshots/menu_page.png)
 
 ##孙福生
 * 2015年5月27日
