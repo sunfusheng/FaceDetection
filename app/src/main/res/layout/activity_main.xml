@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -6,13 +6,16 @@
     <include layout="@layout/app_base_toolbar" />
 
     <ImageView
+        android:id="@+id/tv_image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_below="@+id/toolbar"
         android:src="@drawable/icon_face_image"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_image"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:gravity="left"
@@ -21,15 +24,33 @@
         android:textColor="@color/font_black_2"
         android:textSize="16sp"/>
 
-    <TextView
-        android:id="@+id/tv_start"
+    <com.github.clans.fab.FloatingActionMenu xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab_menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:gravity="left"
-        android:layout_centerInParent="true"
-        android:text="点击启动..."
-        android:textColor="@color/color_primary"
-        android:textSize="16sp"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:padding="15dp"
+        fab:menu_labels_ellipsize="end"
+        fab:menu_labels_singleLine="true"
+        fab:menu_backgroundColor="#ccffffff"
+        fab:menu_labels_position="right">
 
-</LinearLayout>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_menu1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_progress"
+            fab:fab_size="mini"
+            fab:fab_label="人脸追踪" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_menu2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_progress"
+            fab:fab_size="mini"
+            fab:fab_label="人脸识别" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>

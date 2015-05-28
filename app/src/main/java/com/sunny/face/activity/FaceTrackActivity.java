@@ -58,15 +58,15 @@ public class FaceTrackActivity extends BaseActivity implements Callback, Preview
         facedetecter = new FaceDetecter();
         facedetecter.init(this, Global.FACEPP_KEY);
         facedetecter.setTrackingMode(true);
+    }
 
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
         mCamera = Camera.open(1);
         Camera.Parameters para = mCamera.getParameters();
         para.setPreviewSize(width, height);
         mCamera.setParameters(para);
     }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) { }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
@@ -82,41 +82,40 @@ public class FaceTrackActivity extends BaseActivity implements Callback, Preview
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        stopCameraPreview();
+        mCamera.setPreviewCallback(null);
+        mCamera.stopPreview();
+        mCamera.release();
+        mCamera = null;
     }
 
     @Override
-    public void onPreviewFrame(final byte[] data, Camera camera) {
+    public void onPreviewFrame(final byte[] data, final Camera camera) {
         camera.setPreviewCallback(null);
+        if (mCamera == null) return;
         detectHandler.post(new Runnable() {
-
             @Override
             public void run() {
-                byte[] ori = new byte[width * height];
                 int is = 0;
+                byte[] ori = new byte[width * height];
                 for (int x = width - 1; x >= 0; x--) {
                     for (int y = height - 1; y >= 0; y--) {
-                        ori[is] = data[y * width + x];
-                        is++;
+                        ori[is++] = data[y * width + x];
                     }
                 }
                 final Face[] faceinfo = facedetecter.findFaces(ori, height, width);
                 runOnUiThread(new Runnable() {
-
                     @Override
                     public void run() {
                         fmMask.setFaceInfo(faceinfo);
                     }
                 });
-                FaceTrackActivity.this.mCamera.setPreviewCallback(FaceTrackActivity.this);
+                try {
+                    camera.setPreviewCallback(FaceTrackActivity.this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        stopCameraPreview();
     }
 
     @Override
@@ -124,14 +123,7 @@ public class FaceTrackActivity extends BaseActivity implements Callback, Preview
         super.onDestroy();
         facedetecter.release(this);
         handleThread.quit();
+        detectHandler=null;
     }
 
-    private void stopCameraPreview() {
-        if (mCamera != null) {
-            mCamera.setPreviewCallback(null);
-            mCamera.stopPreview();
-            mCamera.release();
-            mCamera = null;
-        }
-    }
 }
