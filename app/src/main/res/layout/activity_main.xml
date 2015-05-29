@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_progress"
             fab:fab_size="mini"
-            fab:fab_label="人脸追踪" />
+            fab:fab_label="@string/title_track" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_menu2"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_progress"
             fab:fab_size="mini"
-            fab:fab_label="人脸识别" />
+            fab:fab_label="@string/title_detect" />
 
     </com.github.clans.fab.FloatingActionMenu>
 

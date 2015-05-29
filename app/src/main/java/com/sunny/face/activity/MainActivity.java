@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -29,11 +32,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @InjectView(R.id.fab_menu)
     FloatingActionMenu fabMenu;
 
+    private static final int MAIN_ACTIVITY_REQUEST_CODE = 2;
+
     Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
                     startActivity(new Intent(MainActivity.this, FaceTrackActivity.class));
+                    break;
+                case 2:
+                    startActivityForResult(new Intent(MainActivity.this, FaceDetectActivity.class), MAIN_ACTIVITY_REQUEST_CODE);
                     break;
             }
             super.handleMessage(msg);
@@ -48,6 +56,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         initToolBar(false, toolbar, R.string.app_name);
         initFloatingActionBar();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                startActivity(new Intent(this, AboutActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initFloatingActionBar() {
@@ -65,7 +89,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.fab_menu2:
                 fabMenu.close(false);
+                mHandler.sendEmptyMessageDelayed(2, 50);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == MAIN_ACTIVITY_REQUEST_CODE) {
+            Log.e("------>", "resultCode: "+resultCode);
         }
     }
 }

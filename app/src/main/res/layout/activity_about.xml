@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_primary"
+    android:orientation="vertical" >
+
+    <include layout="@layout/app_base_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="@string/app_name"
+        android:gravity="center_horizontal"
+        android:textSize="48sp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="GitHub: sfsheng0322\n时间：2015年5月29日\n\n作者：孙福生"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:textColor="@color/white"/>
+
+</LinearLayout>
