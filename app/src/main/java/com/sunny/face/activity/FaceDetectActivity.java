@@ -78,9 +78,7 @@ public class FaceDetectActivity extends BaseActivity implements Callback, Previe
 
     @Override
     public void onPreviewFrame(final byte[] data, final Camera camera) {
-//        Intent intent = new Intent();
-//        intent.putExtra("data", 2);
-//        setResult(1, intent);
+
     }
 
     @Override
