@@ -45,7 +45,7 @@ public class FaceDetectActivity extends BaseActivity implements Callback, Previe
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        mCamera = Camera.open(0);
+        mCamera = Camera.open(1);
         Camera.Parameters para = mCamera.getParameters();
         para.setPreviewSize(width, height);
         mCamera.setParameters(para);
