@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.sunny.face.sharepreferences.FacePreferences;
+
 import de.devland.esperandro.Esperandro;
 
 public class BaseActivity extends ActionBarActivity {
@@ -29,6 +31,10 @@ public class BaseActivity extends ActionBarActivity {
 
     public <P> P getSharePrefence(Class<P> spClass) {
         return Esperandro.getPreferences(spClass, this);
+    }
+
+    public FacePreferences getFacePreferences() {
+        return Esperandro.getPreferences(FacePreferences.class, this);
     }
 
     @Override
