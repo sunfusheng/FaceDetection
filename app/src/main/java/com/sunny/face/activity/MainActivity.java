@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,8 +96,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == MAIN_ACTIVITY_REQUEST_CODE) {
-            Log.e("------>", "resultCode: "+resultCode);
-        }
     }
 }
